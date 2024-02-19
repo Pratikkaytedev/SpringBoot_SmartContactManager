@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/normalbase::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+
+	<section>
+
+		<div class="card mr-3 ml-3">
+
+			<div class="card-body">
+				<h1 class="text-center">Update Your Contact</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form action="#" th:object="${contact}"
+								enctype="multipart/form-data" method="post"
+								th:action="@{/user/updated-contact}" class="mt-2">
+
+								<!-- First Name -->
+								
+								<input type="hidden" name="cId" th:value="${contact.cId}">
+
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">
+
+											<i class="fa fa-plus"></i>
+
+										</div>
+
+									</div>
+
+									<input type="text" id="firstName" name="name" th:value="${contact.name}" required class="form-control" />
+
+
+								</div>
+
+								<!-- Second Name -->
+
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">
+
+											<i class="fas fa-user-alt"></i>
+
+										</div>
+
+									</div>
+
+									<input type="text" th:value="${contact.secondName}" id="secondName" name="secondName"
+										placeholder="Enter last Name" required class="form-control" />
+
+
+								</div>
+
+								<!-- Phone Field -->
+
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">
+
+											<i class="fas fa-phone"></i>
+
+										</div>
+
+									</div>
+
+									<input type="number" th:value="${contact.phone}" id="phone" name="phone"
+										placeholder="Enter Phone Number" required min="10"
+										class="form-control" />
+								</div>
+
+
+								<!-- Email Name -->
+
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">@</div>
+
+									</div>
+
+									<input type="email" th:value="${contact.email}" id="email" name="email"
+										placeholder="Enter Email here" required class="form-control" />
+
+
+								</div>
+
+								<!-- Work field  -->
+
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">
+
+											<i class="fa fa-briefcase"></i>
+
+										</div>
+
+									</div>
+
+									<input type="text" th:value="${contact.work}" id="work" name="work"
+										placeholder="Enter work here" required class="form-control" />
+
+
+								</div>
+
+
+								<!-- Contact Description -->
+
+								<div class="form-group mt-3">
+
+									<textarea  th:text="${contact.description}" placeholder="Enter contact description"
+										name="description" required id="mytextarea"
+										class="form-control" rows="20"></textarea>
+
+								</div>
+
+								<!-- Contact Image Field -->
+								
+								<div class="container">
+								<img src="" style="height: 200px; width: 200px;"
+						class="my_profile_picture" th:src="@{'/IMAGE/'+${contact.image}}" />
+
+								</div>
+								
+
+								<div class="custom-file">
+									<input type="file" name="profileImage" />
+
+								</div>
+
+								<div class="container text-center" >
+									<button type="submit" class="btn btn-outline-primary">Update</button>
+									<button type="reset" class="btn btn-outline-danger">Reset</button>
+
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<script
+	src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
+	referrerpolicy="origin"></script>
+
+<script>
+	var alertMessage = "testing";
+
+	tinymce.init({
+	    selector: '#mytextarea',
+	    setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    }
+	});
+
+</script>
+
+
+
+	</section>
+
+</body>
+</html>
+

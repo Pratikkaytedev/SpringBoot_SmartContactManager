@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})" >
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+
+<section>
+
+<div class="container">
+<div class="row">
+
+
+<div class="col-md-8 offset-md-2">
+<div class="my-card mt-1">
+
+<!-- Using Thymeleaf If condition for alert message -->
+
+<!-- <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+    <p th:text="${session.message.content}"></p>
+    <div th:remove="all" th:if="${session.removeAttribute('message')}"></div>
+</div> -->
+
+
+<div class="container text-center">
+
+<img alt="" style="width:90px;" th:src="@{/IMAGE/online-registration.png}">
+</div>
+
+<h1 class="text-center">Register Here</h1>
+
+<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
+
+<div class="form-group">
+    <label for="name_field">Your Name</label>
+   <input type="text" 
+       name="name" 
+       class="form-control" 
+       th:classappend="${#fields.hasErrors('name') ? 'is.invalid' : ''}" 
+       id="name_field" 
+       placeholder="Enter here" 
+       required 
+       th:value="${user.name}" 
+       aria-describedby="nameHelp">
+  <div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}"></div>
+     </div>
+     
+     <div class="form-group">
+    <label for="email_field">Your Email</label>
+    <input type="email" name="email" class="form-control" id="email_field" placeholder="Enter here" required th:text="${user.email}" aria-describedby="emailHelp">
+   
+     </div>
+     
+     <div class="form-group">
+    <label for="password_field">Your Password</label>
+    <input type="password" name="password" class="form-control" id="password_field" placeholder="Enter here" required  aria-describedby="passwordHelp">  
+     </div>
+     
+     <div class="form-group">
+    <label for="city">City</label>
+    <select name="city"  class="form-control">
+    <option value="Nagpur" >Nagpur</option>
+    <option value="Pune">Pune</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Banglore">Banglore</option>
+    
+    </select>
+    
+     </div>
+     
+     <div class="form-group">
+     <textarea rows="5" name="about" class="form-control" placeholder="Enter Something About Yourself" th:text="${user.about}" cols=""></textarea>
+     </div>
+     
+     <div class="form-group form-check text-center">
+     
+     <input type="checkbox" name="agreement" class="form-check-input" id="agreement"/>
+     <label for="agreement">Accept Terms and Conditions</label>
+     
+     </div>
+     
+     <div class="container text-center">
+     <button type="submit" class="btn bg-primary text-white">Submit</button>
+	<button type="reset" class="btn bg-warning text-white">Reset</button>
+	</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+</body>
+</html>
